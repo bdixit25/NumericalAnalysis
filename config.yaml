@@ -1,0 +1,17 @@
+# This config file lets you pick the task and the method to be employed to finish it
+# Also, all needed inputs are supposed to be provided here
+
+
+
+# Input the equation/equations should be in python compatible format
+# Multiple equations should be provided as a list
+Equation:
+  "x*x*x - 6*x*x + 11*x - 6"
+
+DoPlot: False
+DoCriticalRegionPlots: False
+
+# Solutions of equations
+SolvingEquations:
+  method: ["RegulaFalsiMethod", "NewtonRalphson"]
+
