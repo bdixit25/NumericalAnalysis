@@ -2,7 +2,11 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
 
 # Function to plot the 'function'
-def plotter(values = []):
+def plotter(values=None, filename="output.pdf"):
+    # Avoid mutable default arguments (like values=[]) in Python
+    if values is None:
+        values = []
+        
     x_values = []
     y_values = []
 
@@ -13,7 +17,14 @@ def plotter(values = []):
     fig = plt.figure()
     plt.plot(x_values, y_values)
     plt.grid()
-    return fig
+    
+    # Save directly to PDF and optimize layout spacing
+    plt.savefig(filename, format='pdf', bbox_inches='tight')
+    
+    # Close the figure to free up system memory
+    plt.close(fig) 
+    
+    return filename
 
 # Plot function around critical range
 def critical_range_plotter():
