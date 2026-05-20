@@ -8,10 +8,9 @@
 Equation:
   "x*x*x - 6*x*x + 11*x - 6"
 
-DoPlot: False
-DoCriticalRegionPlots: False
+DoPlot: True
+DoCriticalRegionPlots: True
 
 # Solutions of equations
 SolvingEquations:
-  method: ["RegulaFalsiMethod", "NewtonRalphson"]
-
+  method: "RegulaFalsiMethod"
