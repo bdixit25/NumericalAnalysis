@@ -1,5 +1,6 @@
 import yaml
 import importlib
+from matplotlib.backends.backend_pdf import PdfPages
 
 # Open the config file and load the settings
 with open("config.yaml") as config_file:
@@ -33,7 +34,18 @@ if doPlot or doCriticalRegionPlots:
     # Do the plots if asked
     if doPlot:
         plotter_tool = plotter_module.plotter
-        plotter_tool(xy_pairs)
+        plotter_tool(xy_pairs, "Plots/function_plot.pdf")
+
     # Plot the critical regions if asked
     if doCriticalRegionPlots:
-        print("Hi! I haven't implemented this yet")
+        critical_range_finder_tool = calculation_module.critical_range_finder
+        critical_ranges = critical_range_finder_tool(equation)
+
+        pdf_file = PdfPages("Plots/critical_points.pdf")
+
+        for range_pairs in critical_ranges:
+            values = value_finder_tool(equation, range_pairs[0][0]-0.5, range_pairs[1][0]+0.5, step = 0.001)
+            fig = plotter_tool(values)
+            pdf_file.savefig(fig)
+    
+        pdf_file.close()

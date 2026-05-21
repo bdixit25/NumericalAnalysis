@@ -13,4 +13,6 @@ DoCriticalRegionPlots: True
 
 # Solutions of equations
 SolvingEquations:
-  method: "RegulaFalsiMethod"
+  #method: "Bisection"
+  method: "NewtonRalphson"
+  #method: "RegulaFalsiMethod"

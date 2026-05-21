@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-from matplotlib.backends.backend_pdf import PdfPages
 
 # Function to plot the 'function'
 def plotter(values=None, filename="output.pdf"):
@@ -21,24 +20,5 @@ def plotter(values=None, filename="output.pdf"):
     # Save directly to PDF and optimize layout spacing
     plt.savefig(filename, format='pdf', bbox_inches='tight')
     
-    # Close the figure to free up system memory
-    plt.close(fig) 
-    
-    return filename
+    return fig 
 
-# Plot function around critical range
-def critical_range_plotter():
-    critical_ranges = critical_range_finder()
-
-    plot_dic = {}
-
-    pdf_file = PdfPages("critical_points.pdf")
-
-    for range_pairs in critical_ranges:
-        print(range_pairs)
-        values = value_finder(range_pairs[0][0]-0.5, range_pairs[1][0]+0.5, step = 0.001)
-        fig = plotter(values)
-        pdf_file.savefig(fig)
-        plt.close(fig)
-    
-    pdf_file.close()
