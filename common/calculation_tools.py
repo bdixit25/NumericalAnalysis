@@ -2,12 +2,19 @@ import math
 import numpy as np
 from itertools import pairwise
 
+
 def eval_equation(equation, x = None):
     try:
         return eval(equation) 
     except:
         print("You must provide the value at which th equation has to be evaluated.")
-    #return 2*x - math.log10(x) - 7
+
+
+def eval_equation(equation, x = None):
+    try:
+        return eval(equation) 
+    except:
+        print("You must provide the value at which th equation has to be evaluated.")
 
 
 # Simple function to find the values of the given function in a given range

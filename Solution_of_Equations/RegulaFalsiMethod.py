@@ -1,7 +1,6 @@
 from common.calculation_tools import critical_range_finder, eval_equation
 
 
-
 def iterator_function(x1, y1, x2, y2, equation, iter_count = 0, max_iter = 100):
     x = (x2*y1 - x1*y2)/(y1 - y2)
     y = eval_equation(equation, x)
@@ -16,6 +15,7 @@ def solution_finder(equation):
     roots = []
 
     critical_ranges = critical_range_finder(equation)
+    print(f"critical_ranges = {critical_ranges}")
 
     for range in critical_ranges:
         x_begin = range[0][0]
