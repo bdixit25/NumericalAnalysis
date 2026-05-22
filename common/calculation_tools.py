@@ -1,20 +1,38 @@
 import math
 import numpy as np
 from itertools import pairwise
+import sympy as sp
+
+x_symbol = sp.Symbol('x')
+
+def eval_equation(equation, value=None):
+    if value is None:
+        raise ValueError("You must provide the value at which the equation has to be evaluated.")
+
+    # Treat it as a SymPy expression if it isn't already
+    import sympy as sp
+    expr = sp.sympify(equation)
+    
+    # Find all free variables
+    symbols = expr.free_symbols
+
+    if len(symbols) == 0:
+        # It's a constant (e.g., diff of 2x is 2). No substitution needed.
+        return float(expr)
+        
+    if len(symbols) > 1:
+        raise ValueError("Equation must contain exactly one variable.")
+        
+    # Safely substitute the single variable
+    var = list(symbols)[0]
+    return float(expr.subs(var, value))
 
 
-def eval_equation(equation, x = None):
-    try:
-        return eval(equation) 
-    except:
-        print("You must provide the value at which th equation has to be evaluated.")
-
-
-def eval_equation(equation, x = None):
-    try:
-        return eval(equation) 
-    except:
-        print("You must provide the value at which th equation has to be evaluated.")
+#def eval_equation(equation, x = None):
+#    try:
+#        return eval(equation) 
+#    except:
+#        print("You must provide the value at which th equation has to be evaluated.")
 
 
 # Simple function to find the values of the given function in a given range
